@@ -2,8 +2,9 @@
 package cl.uchile.dcc
 package gwent.Jugador
 
-import gwent.Cards.Card
+import gwent.Cards.{Card, Deck}
 
+import cl.uchile.dcc.gwent.controller.GameController
 
 import scala.collection.immutable.List
 
@@ -28,19 +29,25 @@ import scala.collection.immutable.List
  * @version 1.1
  * @since 1.0
  */
-class Player(val name: String, var gemCounter: Int, private var _deck: List[Card],
-             private var _hand: List[Card]) {
+class Player(val name: String, var gemCounter: Int, private var deck:Deck,
+             private var _hand: List[Card],gameController: GameController) {
   var tablero:TableroPropio=_
 
+
+  def update(): Unit = {
+    
+  }
+  
+  
+  
   if(gemCounter<0) {
     throw new IllegalArgumentException("La variable debe ser positiva")
   }
 
   /** Accessor method for the player's deck */
-  def deck: List[Card] = _deck
 
   /** Accessor method for the player's hand */
-  def hand: List[Card] = _hand
+  private var hand: List[Card] = _hand
   def get_gemCounter():Int = gemCounter
   def set_gemCounter(gem:Int): Unit = {
     if(gem>=0) {
@@ -57,23 +64,16 @@ class Player(val name: String, var gemCounter: Int, private var _deck: List[Card
    * and reassigning the _deck or _hand variable to this new list.
    *
    * @return The card that was drawn from the deck.
-   */
-  def drawCard(): Card = {
-    val card = deck.head
-    _deck = deck.tail
-    _hand = card :: hand
-    card
+   */   
+  def drawCard(n:Int): Unit = {
+    for(i <- 1 to n){
+      val card = deck.mazo(0)
+      deck.removeMember(card)
+      hand = card :: hand
+    }  
   }
+  
 
-  /** Shuffles the player's deck.
-   *
-   * The order of cards in the player's deck is randomized.
-   * This is achieved by creating a new, shuffled list and reassigning _deck to it, rather
-   * than by modifying the original list.
-   */
-  def shuffleDeck(): Unit = {
-    _deck = scala.util.Random.shuffle(_deck)
-  }
 
   /**
    * Removes a specific card from the player's hand.
@@ -87,6 +87,7 @@ class Player(val name: String, var gemCounter: Int, private var _deck: List[Card
     if (hand.contains(carta)) {
       _hand = hand.filterNot(_ == carta)
       carta.play(this)
+      
 
     } else {
       print("No tienes esta carta en tu mano")

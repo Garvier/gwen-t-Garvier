@@ -4,6 +4,8 @@ package gwent.Cards
 
 import gwent.Cards.Card
 
+import cl.uchile.dcc.gwent.Cards.Habilidades.Clima.AbstractClimaHabilities
+import cl.uchile.dcc.gwent.Cards.Habilidades.Habilidades
 import cl.uchile.dcc.gwent.Jugador.{Player, TableroPropio, tablero}
 
 
@@ -21,7 +23,7 @@ import cl.uchile.dcc.gwent.Jugador.{Player, TableroPropio, tablero}
  * @version 1.1
  * @since 1.0
  */
-class WeatherCard(val name: String, val description: String) extends Card{
+class WeatherCard(val name: String, val description: AbstractClimaHabilities) extends Card{
 
   /**
    *

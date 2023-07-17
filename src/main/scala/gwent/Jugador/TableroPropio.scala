@@ -36,8 +36,10 @@ class TableroPropio (player: Player){
   *
   * @param card   The card to be added to the card list.
   */
-  def addCardFromPlayer(card: CloseCombatCard): Unit = closeCombat+=card
-  
+  def addCardFromPlayer(card: CloseCombatCard): Unit = {
+    closeCombat += card
+    card.ejecutar(closeCombat)
+  }
   def addCardFromPlayer(card: SiegeCombatCard): Unit = siegeCombat+=card
 
   def addCardFromPlayer(card: RangedCombatCard): Unit = rangeCombat+=card

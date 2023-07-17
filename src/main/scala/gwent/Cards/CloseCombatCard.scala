@@ -3,6 +3,8 @@ package gwent.Cards
 
 import gwent.Cards.AbstractUnitCard
 
+import cl.uchile.dcc.gwent.Cards.Habilidades.Combat.AbstractCombatHabilities
+import cl.uchile.dcc.gwent.Cards.Habilidades.Habilidades
 import cl.uchile.dcc.gwent.Jugador.{Player, TableroPropio}
 
 import java.util.jar.Attributes.Name
@@ -26,7 +28,7 @@ import java.util.jar.Attributes.Name
  * @version 1.1
  * @since 1.0
  */
-class CloseCombatCard(name: String, description: String, power: Int)
+class CloseCombatCard(name: String, description: AbstractCombatHabilities, power: Int)
   extends AbstractUnitCard(name, description, power){
 
   /**

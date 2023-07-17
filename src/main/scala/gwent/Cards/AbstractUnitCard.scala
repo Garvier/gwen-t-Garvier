@@ -3,6 +3,10 @@ package gwent.Cards
 
 import gwent.Cards.Card
 
+import cl.uchile.dcc.gwent.Cards.Habilidades.Combat.AbstractCombatHabilities
+import cl.uchile.dcc.gwent.Cards.Habilidades.Habilidades
+import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin
+
 /** Abstract class representing a unit card in the Gwen't game.
  *
  * An `AbstractUnitCard` is a type of [[Card]] that has a power value which contributes to
@@ -21,8 +25,8 @@ import gwent.Cards.Card
  * @version 1.1
  * @since 1.0
  */
-abstract class AbstractUnitCard protected(val name: String, val description: String,
-                                                  val power: Int) extends Card {
+abstract class AbstractUnitCard protected(val name: String, val description: AbstractCombatHabilities,
+                                          private var power: Int) extends Card {
 
   /** The current power of the card, which may be affected by various conditions during
    * gameplay.
@@ -32,11 +36,13 @@ abstract class AbstractUnitCard protected(val name: String, val description: Str
 
   def get_name: String = name
 
-  def get_description: String = description
-
+  def get_description: String = description.nombre
+  val PoderBase:Int = power
   def get_power: Int = power
   
-  
+  def set_power(n: Int): Unit = {
+    power= n
+  }
 
   override def equals(obj: Any): Boolean = {
     if(obj.isInstanceOf[AbstractUnitCard]) {
@@ -46,7 +52,6 @@ abstract class AbstractUnitCard protected(val name: String, val description: Str
         false
     }
   }
-
 
 
 

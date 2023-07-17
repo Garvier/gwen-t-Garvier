@@ -6,11 +6,20 @@ import gwent.Cards
 import cl.uchile.dcc.gwent.Cards.{Card, CloseCombatCard, RangedCombatCard, SiegeCombatCard, WeatherCard}
 import cl.uchile.dcc.gwent.Cards
 
-import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
 class tablero(tableroPropio1: TableroPropio, tableroPropio2: TableroPropio) {
   private val awa: ListBuffer[WeatherCard]= ListBuffer[WeatherCard]()
-  
+
+
+  val close1:ArrayBuffer[Card]= tableroPropio1.get_closeCombat()
+  val siege1:ArrayBuffer[Card]=tableroPropio1.get_siegeCombat()
+  val range1:ArrayBuffer[Card]= tableroPropio1.get_rangeCombat()
+  val close2: ArrayBuffer[Card] = tableroPropio2.get_closeCombat()
+  val siege2: ArrayBuffer[Card] = tableroPropio2.get_siegeCombat()
+  val range2: ArrayBuffer[Card] = tableroPropio2.get_rangeCombat()
+
+  val Todas:ArrayBuffer[ArrayBuffer[Card]]= ArrayBuffer(close1,siege1,range1,close2,siege2,range2)
   /**
    *
    * Sets the board for the own boards of the player.

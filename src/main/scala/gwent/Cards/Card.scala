@@ -3,6 +3,8 @@ package gwent.Cards
 
 import gwent.Jugador.Player
 
+import cl.uchile.dcc.gwent.Cards.Habilidades.Habilidades
+
 /** Trait representing a card in the Gwen't game.
  *
  * A card is characterized by its [[name]] and [[description]].
@@ -33,7 +35,7 @@ trait Card {
   /** A description of the card's properties or effects.
    * This is an immutable property.
    */
-  val description: String
+  val description: Habilidades
   
   def play(player:Player):Unit
 
