@@ -5,10 +5,11 @@ import gwent.Cards.{Card, Deck}
 
 import cl.uchile.dcc.gwent.Cards.Habilidades.Clima.{ClimaDespejado, EscarchaMordiente, LluviaTorrencial, NieblaImpenetrable}
 import cl.uchile.dcc.gwent.Cards.Habilidades.Combat.{RefuerzoMoral, Sin, VinculoEstrecho}
-import cl.uchile.dcc.gwent.Jugador.Player
+import cl.uchile.dcc.gwent.Jugador.{Player, TableroPropio}
 import cl.uchile.dcc.gwent.controller.GameClima.{Clear, GameClima}
 import cl.uchile.dcc.gwent.controller.GameState.{GameState, StartState}
 import cl.uchile.dcc.gwent.factory.{CloseFactory, RangedFactory, SiegeFactory, WeatherFactory}
+import cl.uchile.dcc.gwent.Jugador.{tablero,TableroPropio}
 
 class GameController {
   // Estado actual del juego
@@ -42,12 +43,23 @@ class GameController {
   private val Player2: Player = new Player("player2",2,mazo,List[Card](),this)
   Player1.drawCard(10)
   Player2.drawCard(10)
+  val tableroP1: TableroPropio= TableroPropio(Player1)
+  val tableroP2: TableroPropio = TableroPropio(Player2)
+  val board: tablero= tablero(tableroP1,tableroP2)
+  tableroP2.settablero(board)
+  tableroP1.settablero(board)
+  tableroP1.setplayer()
+  tableroP2.setplayer()
+  board.lados()
+
   def startGame(): Unit = {
 
     state.startGame()
     
   }
-  def playCard(card: Card): Unit = {
+  
+  }
+  def playCard():Unit={
     state.playCard()
   }
   def endTurn(): Unit = {

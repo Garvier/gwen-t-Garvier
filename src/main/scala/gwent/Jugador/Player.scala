@@ -2,7 +2,7 @@
 package cl.uchile.dcc
 package gwent.Jugador
 
-import gwent.Cards.{Card, Deck}
+import gwent.Cards.{Card, Deck, WeatherCard}
 
 import cl.uchile.dcc.gwent.controller.GameController
 
@@ -37,8 +37,24 @@ class Player(val name: String, var gemCounter: Int, private var deck:Deck,
   def update(): Unit = {
     
   }
-  
-  
+  def showHand(): Unit={
+    var mano: String=""
+    var count: Int=0
+    hand.foreach{carta=>
+      mano += carta.get_name().toString+", INDEX"+ count.toString+ "; "
+      count+=1
+
+    }
+    println(mano)
+  }
+  def PoderMano():Int={
+    var count=0
+    hand.foreach{carta=>
+      count+= carta.get_power()
+      
+    }
+    count
+  }
   
   if(gemCounter<0) {
     throw new IllegalArgumentException("La variable debe ser positiva")
@@ -47,7 +63,7 @@ class Player(val name: String, var gemCounter: Int, private var deck:Deck,
   /** Accessor method for the player's deck */
 
   /** Accessor method for the player's hand */
-  private var hand: List[Card] = _hand
+  var hand: List[Card] = _hand
   def get_gemCounter():Int = gemCounter
   def set_gemCounter(gem:Int): Unit = {
     if(gem>=0) {
@@ -102,5 +118,15 @@ class Player(val name: String, var gemCounter: Int, private var deck:Deck,
    */
   def settablero(a:TableroPropio): Unit = {
     tablero=a
+  }
+  def tiene_weather():List[WeatherCard]={
+    var climas: List[WeatherCard] = List[WeatherCard]()
+    hand.foreach {
+      case weatherCard: WeatherCard =>
+        climas = weatherCard :: climas
+      case _ => // nada
+    }
+    climas
+    
   }
 }

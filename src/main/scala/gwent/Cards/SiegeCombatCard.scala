@@ -25,7 +25,7 @@ import java.util.jar.Attributes.Name
  * @version 1.1
  * @since 1.0
  */
-class SiegeCombatCard(name: String, description: AbstractCombatHabilities, power: Int)
+class SiegeCombatCard(name: String, description: Habilidades, power: Int)
   extends AbstractUnitCard(name, description, power){
 
   /**

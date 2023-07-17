@@ -4,7 +4,7 @@ package gwent.controller.GameState
 import gwent.Cards.Card
 import gwent.controller.GameController
 
-class PlayCard(controller: GameController) extends GameState {
+class PlayCard(controller: GameController) extends GameState(controller) {
   override def startGame(): Unit = {
     /* ... */
     controller.state = new /* ... */
