@@ -23,7 +23,7 @@ import cl.uchile.dcc.gwent.Jugador.{Player, TableroPropio, tablero}
  * @version 1.1
  * @since 1.0
  */
-class WeatherCard(val name: String, val description: AbstractClimaHabilities) extends Card{
+class WeatherCard(val name: String, val description: Habilidades,power:Int) extends Card{
 
   /**
    *

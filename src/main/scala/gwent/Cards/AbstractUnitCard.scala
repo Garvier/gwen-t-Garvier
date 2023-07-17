@@ -25,7 +25,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin
  * @version 1.1
  * @since 1.0
  */
-abstract class AbstractUnitCard protected(val name: String, val description: AbstractCombatHabilities,
+abstract class AbstractUnitCard protected(val name: String, val description: Habilidades,
                                           private var power: Int) extends Card {
 
   /** The current power of the card, which may be affected by various conditions during

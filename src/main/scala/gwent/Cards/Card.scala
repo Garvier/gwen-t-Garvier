@@ -38,7 +38,10 @@ trait Card {
   val description: Habilidades
   
   def play(player:Player):Unit
-
+  def get_power():Int
+  def set_power(n:Int):Unit
+  def PoderBase():Int
+  def get_name():String
   override def equals(obj: Any): Boolean = {
     obj match {
       case card: Card =>

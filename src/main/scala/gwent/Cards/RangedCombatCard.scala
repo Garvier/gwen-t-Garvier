@@ -26,7 +26,7 @@ import java.util.jar.Attributes.Name
  * @version 1.1
  * @since 1.0
  */
-class RangedCombatCard(name: String, description: AbstractCombatHabilities, power: Int)
+class RangedCombatCard(name: String, description: Habilidades, power: Int)
   extends AbstractUnitCard(name, description, power){
 
   /**

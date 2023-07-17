@@ -19,9 +19,23 @@ class TableroPropio (player: Player){
   def settablero(b:tablero): Unit = {
     table=b
   }
-  def get_closeCombat()=closeCombat
-  def get_rangeCombat()= rangeCombat
-  def get_siegeCombat()= siegeCombat
+  def get_closeCombat(): ListBuffer[CloseCombatCard] =closeCombat
+  def get_rangeCombat(): ListBuffer[CloseCombatCard]= rangeCombat
+  def get_siegeCombat(): ListBuffer[CloseCombatCard]= siegeCombat
+  
+  def poderAcumulado():Int={
+    var count=0
+    this.get_closeCombat().foreach { elemento =>
+    count += elemento.get_power
+    }
+    this.get_siegeCombat().foreach { elemento =>
+      count += elemento.get_power
+    }
+    this.get_rangeCombat().foreach { elemento =>
+      count += elemento.get_power
+    }
+    count
+  }
   /**
    *
    * Sets the player for the board.

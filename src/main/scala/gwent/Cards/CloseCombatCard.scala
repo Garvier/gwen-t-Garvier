@@ -28,7 +28,7 @@ import java.util.jar.Attributes.Name
  * @version 1.1
  * @since 1.0
  */
-class CloseCombatCard(name: String, description: AbstractCombatHabilities, power: Int)
+class CloseCombatCard(name: String, description: Habilidades, power: Int)
   extends AbstractUnitCard(name, description, power){
 
   /**

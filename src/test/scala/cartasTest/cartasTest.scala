@@ -3,6 +3,7 @@ package cartasTest
 import munit.FunSuite
 import gwent.Cards
 
+import cl.uchile.dcc.gwent.Cards.Habilidades.Combat.{RefuerzoMoral, VinculoEstrecho}
 import cl.uchile.dcc.gwent.Cards.{CloseCombatCard, RangedCombatCard, SiegeCombatCard}
 class cartasTest extends FunSuite{
   var closeCombat1: CloseCombatCard = _
@@ -13,17 +14,17 @@ class cartasTest extends FunSuite{
   var siegeCombat2: SiegeCombatCard = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    closeCombat1 = new CloseCombatCard("paladin", ""
+    closeCombat1 = new CloseCombatCard("paladin", new Sin()
       , 4)
-    closeCombat2 = new CloseCombatCard("caballero", "",
+    closeCombat2 = new CloseCombatCard("caballero", new VinculoEstrecho(),
       5)
-    rangedCombat1 = new RangedCombatCard("arquero", "",
+    rangedCombat1 = new RangedCombatCard("arquero", new RefuerzoMoral(),
       3)
-    rangedCombat2 = new RangedCombatCard("arquero", "",
+    rangedCombat2 = new RangedCombatCard("arquero", new RefuerzoMoral,
       3)
-    siegeCombat1 = new SiegeCombatCard("catapulta", "",
+    siegeCombat1 = new SiegeCombatCard("catapulta", Sin(),
       8)
-    siegeCombat2 = new SiegeCombatCard("catapulta", "",
+    siegeCombat2 = new SiegeCombatCard("catapulta", Sin(),
       6)
   }
 
