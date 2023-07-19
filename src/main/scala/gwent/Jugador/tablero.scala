@@ -37,7 +37,10 @@ class tablero(tableroPropio1: TableroPropio, tableroPropio2: TableroPropio) {
    * This method adds the specified WeatherCard object to the "awa" ListBuffer, representing a collection of cards.
    * @param card The WeatherCard object to be added to the collection.
    */
-  def addCardFromPlayer(card: WeatherCard): Unit =awa.append(card)
+  def addCardFromPlayer(card: WeatherCard): Unit ={
+    awa.append(card)
+    card.description.ejecutar(this)
+  }
 
 }
 

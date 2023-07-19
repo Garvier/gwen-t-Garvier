@@ -4,8 +4,10 @@ package gwent.factory
 import gwent.Cards.Habilidades.Combat.Sin
 import gwent.Cards.{SiegeCombatCard, WeatherCard}
 
-import cl.uchile.dcc.gwent.Cards.Habilidades.Clima.EscarchaMordiente
-
+import cl.uchile.dcc.gwent.Cards.Habilidades.Clima.{EscarchaMordiente,LluviaTorrencial,NieblaImpenetrable,ClimaDespejado}
+/**
+ * Concrete class representing a close weather card factory.
+ */
 class WeatherFactory extends AbstractCardFactory(name="EscarchaMordiente",new EscarchaMordiente(),10) {
   override def create(): WeatherCard = new WeatherCard(name,description,power)
 

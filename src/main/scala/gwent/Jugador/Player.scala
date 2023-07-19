@@ -3,8 +3,8 @@ package cl.uchile.dcc
 package gwent.Jugador
 
 import gwent.Cards.{Card, Deck, WeatherCard}
-
-import cl.uchile.dcc.gwent.controller.GameController
+import gwent.Jugador.TableroPropio
+import cl.uchile.dcc.gwent.GameController
 
 import scala.collection.immutable.List
 
@@ -21,7 +21,7 @@ import scala.collection.immutable.List
  * @constructor Create a new player with a name, gem counter, deck, and hand.
  * @param name The name of the player.
  * @param gemCounter The initial gem count for the player.
- * @param _deck The initial list of cards in the player's deck.
+ * @param deck The initial list of cards in the player's deck.
  * @param _hand The initial list of cards in the player's hand.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
@@ -37,16 +37,9 @@ class Player(val name: String, var gemCounter: Int, private var deck:Deck,
   def update(): Unit = {
     
   }
-  def showHand(): Unit={
-    var mano: String=""
-    var count: Int=0
-    hand.foreach{carta=>
-      mano += carta.get_name().toString+", INDEX"+ count.toString+ "; "
-      count+=1
-
-    }
-    println(mano)
-  }
+  def set_deck(newDeck:Deck):Unit = {
+    deck = newDeck
+  } 
   def PoderMano():Int={
     var count=0
     hand.foreach{carta=>
@@ -119,6 +112,12 @@ class Player(val name: String, var gemCounter: Int, private var deck:Deck,
   def settablero(a:TableroPropio): Unit = {
     tablero=a
   }
+
+  /**
+   * Retrieves a list of weather cards from the hand.
+   *
+   * @return The list of weather cards.
+   */
   def tiene_weather():List[WeatherCard]={
     var climas: List[WeatherCard] = List[WeatherCard]()
     hand.foreach {

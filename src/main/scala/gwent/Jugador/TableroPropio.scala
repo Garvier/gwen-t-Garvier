@@ -2,11 +2,12 @@ package cl.uchile.dcc
 package gwent.Jugador
 import cl.uchile.dcc.gwent.Cards.{Card, CloseCombatCard, RangedCombatCard, SiegeCombatCard}
 import cl.uchile.dcc.gwent.Jugador.tablero
-import scala.collection.mutable.ListBuffer
+
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 class TableroPropio (player: Player){
-  private val closeCombat:ListBuffer[CloseCombatCard] = ListBuffer[CloseCombatCard]()
-  private val rangeCombat:ListBuffer[RangedCombatCard]= ListBuffer[RangedCombatCard]()
-  private val siegeCombat:ListBuffer[SiegeCombatCard]= ListBuffer[SiegeCombatCard]()
+  private val closeCombat: ArrayBuffer[Card] = ArrayBuffer[Card]()
+  private val rangeCombat:ArrayBuffer[Card]= ArrayBuffer[Card]()
+  private val siegeCombat:ArrayBuffer[Card]= ArrayBuffer[Card]()
   var table:tablero=_
 
 
@@ -19,20 +20,20 @@ class TableroPropio (player: Player){
   def settablero(b:tablero): Unit = {
     table=b
   }
-  def get_closeCombat(): ListBuffer[CloseCombatCard] =closeCombat
-  def get_rangeCombat(): ListBuffer[CloseCombatCard]= rangeCombat
-  def get_siegeCombat(): ListBuffer[CloseCombatCard]= siegeCombat
+  def get_closeCombat(): ArrayBuffer[Card] =closeCombat
+  def get_rangeCombat(): ArrayBuffer[Card]= rangeCombat
+  def get_siegeCombat(): ArrayBuffer[Card]= siegeCombat
   
   def poderAcumulado():Int={
     var count=0
     this.get_closeCombat().foreach { elemento =>
-    count += elemento.get_power
+    count += elemento.get_power()
     }
     this.get_siegeCombat().foreach { elemento =>
-      count += elemento.get_power
+      count += elemento.get_power()
     }
     this.get_rangeCombat().foreach { elemento =>
-      count += elemento.get_power
+      count += elemento.get_power()
     }
     count
   }
@@ -52,11 +53,19 @@ class TableroPropio (player: Player){
   */
   def addCardFromPlayer(card: CloseCombatCard): Unit = {
     closeCombat += card
-    card.ejecutar(closeCombat)
+    card.description.ejecutar(closeCombat,card)
+    
   }
-  def addCardFromPlayer(card: SiegeCombatCard): Unit = siegeCombat+=card
+  def addCardFromPlayer(card: SiegeCombatCard): Unit = {
+    siegeCombat+=card
+    card.description.ejecutar(siegeCombat,card)
+  }
 
-  def addCardFromPlayer(card: RangedCombatCard): Unit = rangeCombat+=card
+  def addCardFromPlayer(card: RangedCombatCard): Unit = {
+    rangeCombat+=card
+    card.description.ejecutar(rangeCombat,card)
+  }
+  
   
 }
 
