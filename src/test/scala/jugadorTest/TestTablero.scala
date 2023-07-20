@@ -1,18 +1,20 @@
 package cl.uchile.dcc
 package jugadorTest
 
-import main.gwent.Cards.*
-import gwent.Cards.Habilidades.Combat.{Sin,RefuerzoMoral,VinculoEstrecho}
-import gwent.Cards.Habilidades.Clima.{ClimaDespejado,EscarchaMordiente,LluviaTorrencial,NieblaImpenetrable}
+import gwent.Cards.*
+import gwent.Cards.Habilidades.Combat.{RefuerzoMoral, Sin, VinculoEstrecho}
+import gwent.Cards.Habilidades.Clima.{ClimaDespejado, EscarchaMordiente, LluviaTorrencial, NieblaImpenetrable}
 import gwent.Jugador.{Player, TableroPropio, tablero}
 import gwent.factory.{CloseFactory, RangedFactory, SiegeFactory, WeatherFactory}
 
 import munit.FunSuite
 
+import scala.collection.mutable.ArrayBuffer
+
 class TestTablero extends FunSuite {
   var player1: Player = _
   var player2: Player =_
-  var mano: List[Card] = _
+  var mano: ArrayBuffer[Card] = _
   var mazo: Deck = _
   var gema: Int = _
   val facRan: RangedFactory = new RangedFactory()
@@ -25,6 +27,7 @@ class TestTablero extends FunSuite {
 
 
   override def beforeEach(context: BeforeEach): Unit = {
+    mazo= new Deck()
     mazo.Genera(facRan, "Arquero", new Sin(), 4, 1)
     mazo.Genera(facSie, "Ariete", new Sin(), 6, 1)
     mazo.Genera(facClo, "Espadachin", new Sin(), 3, 1)
@@ -35,7 +38,7 @@ class TestTablero extends FunSuite {
     mazo.Genera(weaFac, "Lluvia Torrencial", new LluviaTorrencial(), 0, 1)
     mazo.Genera(weaFac, "Niebla Impenetrable", new NieblaImpenetrable(), 0, 1)
     mazo.Genera(weaFac, "Clima Despejado", new ClimaDespejado(), 0, 1)
-    mano= List[Card]()
+    mano= ArrayBuffer.empty[Card]
     player1 = Player("Juan Carlos Bodoque", gema, mazo, mano)
     player2 = Player("Tulio Trivino", gema, mazo, mano)
     player1.drawCard(5)

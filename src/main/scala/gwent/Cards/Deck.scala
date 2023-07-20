@@ -42,8 +42,8 @@ class Deck() {
    *
    * @param carta The card to remove.
    */
-  def removeMember(carta: Card): Unit = {
-    mazo -= carta
+  def removeMember(): Unit = {
+    mazo = mazo.tail
   }
 
   /**

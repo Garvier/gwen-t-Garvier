@@ -3,6 +3,10 @@ package gwent.Cards.Habilidades.Clima
 import gwent.Jugador.tablero
 import gwent.Cards.Habilidades.Clima.AbstractClimaHabilities
 
+import cl.uchile.dcc.gwent.Cards.Card
+
+import scala.collection.mutable.ArrayBuffer
+
 /**
 
 Class representing the "Lluvia Torrencial" ability.
@@ -27,7 +31,8 @@ override def ejecutar(board: tablero): Unit = {
  */
 class LluviaTorrencial() extends AbstractClimaHabilities {
   override val nombre: String = "Lluvia Torrencial"
-  
+
+  override def ejecutar(lista: ArrayBuffer[Card], card: Card): Unit = super.ejecutar(lista, card)
   override def ejecutar(board: tablero): Unit = {
     board.siege1.foreach{carta=>
       carta.set_power(1)

@@ -4,6 +4,9 @@ package gwent.Cards.Habilidades.Combat
 import gwent.Cards.Habilidades.Habilidades
 
 import cl.uchile.dcc.gwent.Cards.Card
+import cl.uchile.dcc.gwent.Jugador.tablero
+
+import scala.collection.mutable.ArrayBuffer
 /**
 
 Class representing the "Sin Efecto" ability.
@@ -29,7 +32,11 @@ override def ejecutar(lista: List[Any], card: Card): Unit = {
 class Sin() extends AbstractCombatHabilities {
   override val nombre: String = "Sin Efecto"
 
-  override def ejecutar(lista: List[Any],card:Card): Unit ={
+  override def ejecutar(lista: ArrayBuffer[Card], card: Card): Unit = {
+    
+  }
+
+  override def ejecutar(board: tablero): Unit = {
     
   }
 }

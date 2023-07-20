@@ -1,6 +1,10 @@
 package cl.uchile.dcc
 package gwent.Cards.Habilidades.Clima
 import gwent.Jugador.tablero
+
+import cl.uchile.dcc.gwent.Cards.Card
+
+import scala.collection.mutable.ArrayBuffer
 /**
  * Class representing the "Impenetrable Fog" ability.
  * This ability affects the cards in the range zone of the board,
@@ -12,6 +16,7 @@ class NieblaImpenetrable() extends AbstractClimaHabilities {
    */
   override val nombre: String = "Niebla Impenetrable"
 
+  override def ejecutar(lista: ArrayBuffer[Card], card: Card): Unit = super.ejecutar(lista, card)
   /**
    * Executes the "Impenetrable Fog" ability on the given board.
    * This function sets the power of the cards in the range zone of the board to 1.

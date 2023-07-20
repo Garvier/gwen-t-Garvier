@@ -10,7 +10,7 @@ class SelectingTargetState(context:GameController)extends GameState(context) {
     context.state = new IdleState(context)
   }
 
-  override def playCard(card: Card): Unit = {
+  def playCard(card: Card): Unit = {
     context.playCard(card)
   }
 }

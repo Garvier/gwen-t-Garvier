@@ -2,11 +2,13 @@
 package cl.uchile.dcc
 package gwent.Jugador
 
-import gwent.Cards.{Card, Deck, WeatherCard}
+import gwent.Cards.{Card, CloseCombatCard, Deck, RangedCombatCard, SiegeCombatCard, WeatherCard}
 import gwent.Jugador.TableroPropio
+
 import cl.uchile.dcc.gwent.GameController
 
 import scala.collection.immutable.List
+import scala.collection.mutable.ArrayBuffer
 
 /** Class representing a player in the Gwen't game.
  *
@@ -30,13 +32,16 @@ import scala.collection.immutable.List
  * @since 1.0
  */
 class Player(val name: String, var gemCounter: Int, private var deck:Deck,
-             private var _hand: List[Card],gameController: GameController) {
+             private var _hand: ArrayBuffer[Card]) {
   var tablero:TableroPropio=_
-
-
+  var controller: GameController=_
+  def set_controller(lol:GameController): Unit = {
+    controller=lol
+  }
   def update(): Unit = {
     
   }
+  def get_Deck():ArrayBuffer[Card]=deck.mazo
   def set_deck(newDeck:Deck):Unit = {
     deck = newDeck
   } 
@@ -56,7 +61,7 @@ class Player(val name: String, var gemCounter: Int, private var deck:Deck,
   /** Accessor method for the player's deck */
 
   /** Accessor method for the player's hand */
-  var hand: List[Card] = _hand
+  var hand: ArrayBuffer[Card] = _hand
   def get_gemCounter():Int = gemCounter
   def set_gemCounter(gem:Int): Unit = {
     if(gem>=0) {
@@ -77,8 +82,8 @@ class Player(val name: String, var gemCounter: Int, private var deck:Deck,
   def drawCard(n:Int): Unit = {
     for(i <- 1 to n){
       val card = deck.mazo(0)
-      deck.removeMember(card)
-      hand = card :: hand
+      deck.removeMember()
+      hand +=card
     }  
   }
   
@@ -96,9 +101,9 @@ class Player(val name: String, var gemCounter: Int, private var deck:Deck,
     if (hand.contains(carta)) {
       _hand = hand.filterNot(_ == carta)
       carta.play(this)
-      
 
-    } else {
+      }
+    else {
       print("No tienes esta carta en tu mano")
     }
   }

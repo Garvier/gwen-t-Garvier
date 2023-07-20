@@ -44,7 +44,7 @@ abstract class AbstractUnitCard protected (val name: String,
    *
    * @return The description of the card.
    */
-  override def get_description: String = description.nombre
+  def get_description(): String = description.nombre
 
   /**
    * Retrieves the base power of the card.
@@ -79,7 +79,7 @@ abstract class AbstractUnitCard protected (val name: String,
   override def equals(obj: Any): Boolean = {
     obj match {
       case card: AbstractUnitCard =>
-        card.name == this.name && card.description == this.description && card.power == this.power
+        card.name == this.name && card.description.nombre == this.description.nombre && card.power == this.power
       case _ => false
     }
   }

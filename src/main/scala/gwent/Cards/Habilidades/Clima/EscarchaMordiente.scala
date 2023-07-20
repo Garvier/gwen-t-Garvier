@@ -1,6 +1,10 @@
 package cl.uchile.dcc
 package gwent.Cards.Habilidades.Clima
 import gwent.Jugador.tablero
+
+import cl.uchile.dcc.gwent.Cards.Card
+
+import scala.collection.mutable.ArrayBuffer
 /**
 
 Class representing the "Escarcha Mordiente" ability.
@@ -26,6 +30,7 @@ override def ejecutar(board: tablero): Unit = {
 class EscarchaMordiente() extends AbstractClimaHabilities {
   override val nombre: String = "Escarcha Mordiente"
 
+  override def ejecutar(lista: ArrayBuffer[Card], card: Card): Unit = super.ejecutar(lista, card)
   override def ejecutar(board: tablero): Unit = {
     board.close1.foreach{carta=>
       carta.set_power(1)

@@ -4,6 +4,9 @@ package gwent.Cards.Habilidades.Combat
 import gwent.Cards.Habilidades.Combat.AbstractCombatHabilities
 
 import cl.uchile.dcc.gwent.Cards.Card
+import cl.uchile.dcc.gwent.Jugador.tablero
+
+import scala.collection.mutable.ArrayBuffer
 /**
 
 Class representing the "Vinculo Estrecho" ability.
@@ -28,11 +31,29 @@ override def ejecutar(lista: List[Card], card: Card): Unit = {
  */
 class VinculoEstrecho() extends AbstractCombatHabilities {
   override val nombre: String = "Vinculo Estrecho"
-  override def ejecutar(lista:List[Card],card:Card): Unit = {
-    lista.foreach{ elemento =>
-      if (elemento.get_name() == card.get_name()){
-        elemento.set_power(elemento.get_power() * 2)
+
+  override def ejecutar(board: tablero): Unit = {
+    
+  }
+
+  override def ejecutar(lista: ArrayBuffer[Card], card: Card): Unit = {
+    var count =0
+
+    lista.foreach { elemento =>
+      if (elemento.get_name() == card.get_name()) {
+        count+=1
       }
+    }
+    if(count>1) {
+      lista.foreach { elemento =>
+        if (elemento.get_name() == card.get_name()) {
+          elemento.set_power(elemento.PoderBase * 2)
+        }
+      }
+    }
+    else{
+
     }
   }
 }
+

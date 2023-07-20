@@ -25,18 +25,30 @@ class TableroPropio (player: Player){
   def get_siegeCombat(): ArrayBuffer[Card]= siegeCombat
   
   def poderAcumulado():Int={
-    var count=0
-    this.get_closeCombat().foreach { elemento =>
-    count += elemento.get_power()
-    }
+    this.siegePower()+this.rangePower()+this.closePower()
+  }
+  def siegePower():Int= {
+    var count:Int =0
     this.get_siegeCombat().foreach { elemento =>
       count += elemento.get_power()
     }
+    count
+  }
+  def closePower():Int={
+    var count:Int=0
+    this.get_closeCombat().foreach { elemento =>
+      count += elemento.get_power()
+    }
+    count
+  }
+  def rangePower():Int={
+    var count: Int = 0
     this.get_rangeCombat().foreach { elemento =>
       count += elemento.get_power()
     }
     count
   }
+    
   /**
    *
    * Sets the player for the board.
@@ -56,16 +68,18 @@ class TableroPropio (player: Player){
     card.description.ejecutar(closeCombat,card)
     
   }
+
   def addCardFromPlayer(card: SiegeCombatCard): Unit = {
-    siegeCombat+=card
-    card.description.ejecutar(siegeCombat,card)
+    siegeCombat += card
+    card.description.ejecutar(siegeCombat, card)
   }
 
   def addCardFromPlayer(card: RangedCombatCard): Unit = {
-    rangeCombat+=card
-    card.description.ejecutar(rangeCombat,card)
+    rangeCombat += card
+    card.description.ejecutar(rangeCombat, card)
   }
+
   
-  
+
 }
 

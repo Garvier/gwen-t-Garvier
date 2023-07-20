@@ -1,10 +1,10 @@
 package cl.uchile.dcc
 package cartasTest
-import munit.FunSuite
 import gwent.Cards
+import gwent.Cards.Habilidades.Combat.{RefuerzoMoral, Sin, VinculoEstrecho}
+import gwent.Cards.{CloseCombatCard, RangedCombatCard, SiegeCombatCard}
 
-import cl.uchile.dcc.gwent.Cards.Habilidades.Combat.{RefuerzoMoral, VinculoEstrecho}
-import cl.uchile.dcc.gwent.Cards.{CloseCombatCard, RangedCombatCard, SiegeCombatCard}
+import munit.FunSuite
 class cartasTest extends FunSuite{
   var closeCombat1: CloseCombatCard = _
   var closeCombat2: CloseCombatCard = _
@@ -22,9 +22,9 @@ class cartasTest extends FunSuite{
       3)
     rangedCombat2 = new RangedCombatCard("arquero", new RefuerzoMoral,
       3)
-    siegeCombat1 = new SiegeCombatCard("catapulta", Sin(),
+    siegeCombat1 = new SiegeCombatCard("catapulta",new  Sin(),
       8)
-    siegeCombat2 = new SiegeCombatCard("catapulta", Sin(),
+    siegeCombat2 = new SiegeCombatCard("catapulta",new  Sin(),
       6)
   }
 
@@ -33,9 +33,9 @@ class cartasTest extends FunSuite{
     !siegeCombat1.equals(siegeCombat2)
   }
   test("getters"){
-    assertEquals(closeCombat2.get_power, 5)
-    assertEquals(siegeCombat2.get_name, "catapulta")
-    assertEquals(siegeCombat2.get_description, "")
+    assertEquals(closeCombat2.get_power(), 5)
+    assertEquals(siegeCombat2.get_name(), "catapulta")
+    siegeCombat1.description.equals(new Sin())
     
   }
 

@@ -24,7 +24,18 @@ import cl.uchile.dcc.gwent.Jugador.{Player, TableroPropio, tablero}
  * @since 1.0
  */
 class WeatherCard(val name: String, val description: Habilidades,power:Int) extends Card{
+  override def set_power(n: Int): Unit = {
+    
+  }
 
+  override def get_power(): Int = {
+    power
+  }
+
+  override def get_name(): String = name
+
+  override val PoderBase: Int = 0
+  
   /**
    *
    * Plays the current card on the player's board.

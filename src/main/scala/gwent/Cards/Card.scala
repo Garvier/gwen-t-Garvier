@@ -50,7 +50,7 @@ trait Card {
    *
    * @return The base power of the card.
    */
-  def PoderBase(): Int
+  val PoderBase: Int
 
   /**
    * Retrieves the name of the card.

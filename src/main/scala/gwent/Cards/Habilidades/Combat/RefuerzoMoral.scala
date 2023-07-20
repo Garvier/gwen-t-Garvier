@@ -4,6 +4,9 @@ package gwent.Cards.Habilidades.Combat
 import gwent.Cards.Habilidades.Combat.AbstractCombatHabilities
 
 import cl.uchile.dcc.gwent.Cards.Card
+import cl.uchile.dcc.gwent.Jugador.tablero
+
+import scala.collection.mutable.ArrayBuffer
 
 /**
 
@@ -30,12 +33,18 @@ override def ejecutar(lista: List[Card], card: Card): Unit = {
  */
 class RefuerzoMoral() extends AbstractCombatHabilities {
   override val nombre: String = "Refuerzo Moral"
-  override def ejecutar(lista:List[Card],card: Card): Unit = {
-    lista.foreach{elemento=>
-      if(elemento!=card){
-        elemento.set_power(elemento.get_power()+1)
+
+  override def ejecutar(board: tablero): Unit = {
+    
+  }
+
+  override def ejecutar(lista: ArrayBuffer[Card], card: Card): Unit = {
+    lista.foreach { elemento =>
+      if (elemento != card) {
+        elemento.set_power(elemento.get_power() + 1)
       }
 
     }
   }
 }
+
